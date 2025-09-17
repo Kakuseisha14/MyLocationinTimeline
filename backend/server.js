@@ -10,11 +10,21 @@ const app = express();
 
 // ✅ Configurar CORS
 app.use(cors({
-  origin: 'https://veccit-frontend.onrender.com',
+  origin: (origin, callback) => {
+    // Permitir tu frontend en Render y localhost
+    const allowedOrigins = [
+      'https://veccit-frontend.onrender.com',
+      'http://localhost:3000'
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-
 
 // ✅ Middleware para parsear JSON
 app.use(express.json());

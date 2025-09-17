@@ -32,6 +32,7 @@ export default function Page(): React.JSX.Element {
   const [customers, setCustomers] = React.useState<Customer[]>([]);
   const [filteredCustomers, setFilteredCustomers] = React.useState<Customer[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = React.useState<string>(''); // Nuevo estado para búsqueda
   const [page, setPage] = React.useState<number>(0); // Estado para la paginación
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(5); // Tamaño de página
